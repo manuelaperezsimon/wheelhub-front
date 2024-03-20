@@ -1,15 +1,15 @@
 @import "styles/base";
 
 .app {
-  .app-content{
+  .app-content {
     margin: 25px;
   }
-  p{
+  p {
     color: $text-color;
     font-size: 15px;
     font-weight: 500;
   }
-  h4{
+  h4 {
     color: $dark-green-color;
     font-weight: 700;
   }
@@ -18,9 +18,8 @@
     border: 1px solid $dark-green-color;
     margin-bottom: 15px;
   }
-  .app-header-logo{
+  .app-header-logo {
     max-height: 80px;
     border: none;
   }
-
 }

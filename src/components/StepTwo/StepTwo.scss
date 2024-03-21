@@ -1,0 +1,25 @@
+@import "../../styles/base.scss";
+
+.form-register__group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.form__label {
+  color: $text-color;
+  font-weight: 700;
+}
+
+.form__input {
+  padding: 4px 8px;
+}
+
+.form__button__group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.error {
+  color: $red;
+}

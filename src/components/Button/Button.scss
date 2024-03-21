@@ -1,0 +1,27 @@
+@import "../../styles/base.scss";
+
+.next-step__button {
+  background-color: $dark-green-color;
+  color: $white;
+  padding: 4px 10px;
+}
+
+.step__button {
+  background-color: $step-color;
+  color: $white;
+  padding: 4px 10px;
+}
+
+.final-step__button {
+  border: none;
+  background-color: $white;
+  color: $text-color;
+  font-weight: 600;
+}
+
+.backward-step__button {
+  border: none;
+  background-color: $white;
+  color: $text-color;
+  font-weight: 600;
+}

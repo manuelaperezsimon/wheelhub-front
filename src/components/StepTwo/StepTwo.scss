@@ -1,23 +1,39 @@
 @import "../../styles/base.scss";
 
-.form-register__group {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 20px;
+.form {
+  &-register__group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+
+  &__label {
+    color: $text-color;
+    font-weight: 700;
+  }
+
+  &__input {
+    padding: 4px 8px;
+  }
+
+  &__button__group {
+    display: flex;
+    justify-content: space-between;
+  }
 }
 
-.form__label {
-  color: $text-color;
-  font-weight: 700;
-}
+.password {
+  &-weak {
+    border-bottom: 6px solid red;
+  }
 
-.form__input {
-  padding: 4px 8px;
-}
+  &-medium {
+    border-bottom: 6px solid rgb(252 211 77);
+  }
 
-.form__button__group {
-  display: flex;
-  justify-content: space-between;
+  &-strong {
+    border-bottom: 6px solid green;
+  }
 }
 
 .error {

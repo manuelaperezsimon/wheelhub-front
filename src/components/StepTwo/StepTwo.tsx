@@ -2,11 +2,13 @@ import { InputHTMLAttributes, useContext, useState } from "react";
 import { SlArrowRight } from "react-icons/sl";
 import { createFormContext } from "../../context/formContext";
 import Button from "../Button/Button";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import "./StepTwo.scss";
+import usePassWordValidation from "../hooks/usePasswordValidation";
 
 const StepTwo = (): JSX.Element => {
   const { stepForward, stepBackward } = useContext(createFormContext);
+  const { updatePasswordStrength, passwordStrength } = usePassWordValidation();
   const {
     register,
     handleSubmit,
@@ -62,7 +64,7 @@ const StepTwo = (): JSX.Element => {
             <input
               type="password"
               id="password"
-              className="form__input input-password"
+              className={`form__input input-password ${passwordStrength}`}
               placeholder="Crea tu Contraseña"
               autoComplete="off"
               {...register("password", {
@@ -76,6 +78,7 @@ const StepTwo = (): JSX.Element => {
                     "La contraseña debe tener entre 8 y 24 caracteres y contener al menos un número y una letra mayúscula.",
                 },
               })}
+              onChange={(e) => updatePasswordStrength(e.target.value)}
             />
             {errors.password && (
               <span className="error">{errors.password.message}</span>

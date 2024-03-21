@@ -4,7 +4,7 @@ import { createFormContext } from "../../context/formContext";
 import Button from "../Button/Button";
 import { useForm } from "react-hook-form";
 import "./StepTwo.scss";
-import usePassWordValidation from "../hooks/usePasswordValidation";
+import usePassWordValidation from "../../hooks/usePasswordValidation";
 
 const StepTwo = (): JSX.Element => {
   const { stepForward, stepBackward } = useContext(createFormContext);

@@ -1,10 +1,18 @@
-import { InputHTMLAttributes, useContext, useState } from "react";
+import { useContext } from "react";
 import { SlArrowRight } from "react-icons/sl";
 import { createFormContext } from "../../context/formContext";
 import Button from "../Button/Button";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import "./StepTwo.scss";
 import usePassWordValidation from "../../hooks/usePasswordValidation";
+import useUser from "../../hooks/useUser";
+
+type FormValues = {
+  username: string;
+  password: string;
+  repeatPassword?: string;
+  clue?: string;
+};
 
 const StepTwo = (): JSX.Element => {
   const { stepForward, stepBackward } = useContext(createFormContext);
@@ -14,28 +22,35 @@ const StepTwo = (): JSX.Element => {
     handleSubmit,
     watch,
     formState: { errors, isValid },
-  } = useForm();
+    getValues,
+  } = useForm<FormValues>();
+  const { createUser } = useUser();
 
-  const handleValidation = () => {};
+  const values = getValues();
+
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    await createUser(data);
+    stepForward();
+  };
 
   return (
     <>
       <form
-        onSubmit={handleSubmit(handleValidation)}
+        onSubmit={handleSubmit(onSubmit)}
         className="form-register"
         noValidate
       >
         <div className="form-register__group">
-          <label htmlFor="userName" className="form__label">
+          <label htmlFor="username" className="form__label">
             Crea tu usuario
           </label>
           <input
             type="text"
-            id="userName"
-            className="form__input input-userName"
+            id="username"
+            className="form__input input-username"
             placeholder="Introduce tu usuario"
             autoComplete="off"
-            {...register("userName", {
+            {...register("username", {
               required: {
                 value: true,
                 message: "El campo es requerido",
@@ -52,8 +67,8 @@ const StepTwo = (): JSX.Element => {
               },
             })}
           />
-          {errors.userName && (
-            <span className="error">{errors.userName.message}</span>
+          {errors.username && (
+            <span className="error">{errors.username.message}</span>
           )}
         </div>
         <div>
@@ -151,7 +166,7 @@ const StepTwo = (): JSX.Element => {
             buttonText="Siguiente"
             type="submit"
             classNameTypeButton="next-step__button"
-            actionOnclick={isValid ? stepForward : () => {}}
+            actionOnclick={isValid ? () => onSubmit(values) : () => {}}
             icon={<SlArrowRight />}
           />
         </div>

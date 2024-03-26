@@ -56,7 +56,9 @@ const StepTwo = (): JSX.Element => {
           <input
             type="text"
             id="username"
-            className="form__input input-username"
+            className={`form__input input-username ${
+              errors.username ? "input-error" : undefined
+            }`}
             placeholder="Introduce tu usuario"
             autoComplete="off"
             {...register("username", {
@@ -89,7 +91,9 @@ const StepTwo = (): JSX.Element => {
               <input
                 type={passwordVisible ? "text" : "password"}
                 id="password"
-                className={`form__input input-password ${passwordStrength}`}
+                className={`form__input input-password ${passwordStrength} ${
+                  errors.password ? "input-error" : undefined
+                }`}
                 placeholder="Crea tu Contraseña"
                 autoComplete="off"
                 {...register("password", {
@@ -129,7 +133,9 @@ const StepTwo = (): JSX.Element => {
               <input
                 type={repeatPasswordVisible ? "text" : "password"}
                 id="repeatPassword"
-                className="form__input input-repeat-password"
+                className={`form__input input-repeat-password ${
+                  errors.repeatPassword ? "input-error" : undefined
+                }`}
                 placeholder="Repite tu Contraseña"
                 autoComplete="off"
                 {...register("repeatPassword", {
@@ -174,7 +180,9 @@ const StepTwo = (): JSX.Element => {
           <input
             type="text"
             id="clue"
-            className="form__input input-repeat-password"
+            className={`form__input input-clue ${
+              errors.clue ? "input-error" : undefined
+            }`}
             placeholder="Introduce tu pista"
             autoComplete="off"
             {...register("clue", {

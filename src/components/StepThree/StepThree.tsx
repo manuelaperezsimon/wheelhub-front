@@ -38,7 +38,7 @@ const StepThree = (): JSX.Element => {
             </div>
           </div>
         )}
-
+        <hr className="bottom-line" />
         <div className="button__group">
           <Button
             buttonText="Atrás"

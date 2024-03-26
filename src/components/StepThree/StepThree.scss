@@ -1,6 +1,19 @@
+@import "../../styles/base.scss";
+
+.step-three-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 70px 40px;
+  width: 50%;
+  margin: 0 auto;
+}
+
 .final-content {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 50px;
 }
 
@@ -9,17 +22,22 @@
   height: 200px;
 }
 
-.hola {
-  display: flex;
-  flex-direction: column;
-}
-
 .step-title {
   font-weight: 700;
   margin-bottom: 30px;
 }
 
 .button__group {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 375px;
+}
+
+.bottom-line {
+  border-bottom: 1px solid $step-color;
+  width: 100%;
+  align-self: center;
+  margin: 0;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }

@@ -14,11 +14,13 @@ export default function Stepper(): JSX.Element {
     <>
       <HeaderStepper />
       <div className="stepper__container">
-        <div className="title-container">
-          <h2 className="title">
-            <span className="title-word">Test</span> Frontend Wheel Hub
-          </h2>
-        </div>
+        {(currentStep === 1 || currentStep === 2) && (
+          <div className="title-container">
+            <h2 className="title">
+              <span className="title-word">Test</span> Frontend Wheel Hub
+            </h2>
+          </div>
+        )}
         {currentStep === 1 && (
           <StepOne alt="Wheel Hub Logo" image={WheelHubLogo} />
         )}

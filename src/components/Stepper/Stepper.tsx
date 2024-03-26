@@ -14,6 +14,7 @@ export default function Stepper(): JSX.Element {
         <StepOne alt="Wheel Hub Logo" image={WheelHubLogo} />
       )}
       {currentStep === 2 && <StepTwo />}
+      {currentStep === 3 && <StepThree />}
     </div>
   );
 }

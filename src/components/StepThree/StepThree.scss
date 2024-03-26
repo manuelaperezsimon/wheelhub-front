@@ -1,0 +1,25 @@
+.final-content {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+.final-step__image {
+  width: 200px;
+  height: 200px;
+}
+
+.hola {
+  display: flex;
+  flex-direction: column;
+}
+
+.step-title {
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.button__group {
+  display: flex;
+  justify-content: space-between;
+}

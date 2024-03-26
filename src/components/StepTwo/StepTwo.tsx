@@ -1,5 +1,6 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { SlArrowRight } from "react-icons/sl";
+import { ClipLoader } from "react-spinners";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { createFormContext } from "../../context/formContext";
 import Button from "../Button/Button";
@@ -16,6 +17,16 @@ type FormValues = {
 };
 
 const StepTwo = (): JSX.Element => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    const loadingTimeout = setTimeout(() => {
+      setIsSubmitting(false);
+    }, 5000);
+
+    return () => clearTimeout(loadingTimeout);
+  }, []);
+
   const { stepForward, stepBackward } = useContext(createFormContext);
   const {
     updatePasswordStrength,
@@ -38,7 +49,9 @@ const StepTwo = (): JSX.Element => {
   const values = getValues();
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    setIsSubmitting(true);
     await createUser(data);
+    setIsSubmitting(false);
     stepForward();
   };
 
@@ -212,11 +225,18 @@ const StepTwo = (): JSX.Element => {
               type="submit"
               classNameTypeButton="next-step__button"
               actionOnclick={isValid ? () => onSubmit(values) : () => {}}
-              icon={<SlArrowRight />}
+              isDisable={!isValid || isSubmitting}
+              icon={
+                isSubmitting ? (
+                  <ClipLoader color="#36d7b7" className="spinner" />
+                ) : (
+                  <SlArrowRight />
+                )
+              }
             />
           </div>
         </div>
-      </form>{" "}
+      </form>
     </>
   );
 };

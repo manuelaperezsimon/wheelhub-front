@@ -1,6 +1,18 @@
 @import "../../styles/base.scss";
 
 .form {
+  &-register {
+    padding: 40px 250px;
+    margin-top: 100px;
+  }
+
+  &-register-password__group {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 50px;
+    margin-bottom: 20px;
+  }
+
   &-register__group {
     display: flex;
     flex-direction: column;
@@ -64,4 +76,14 @@
 
 .error {
   color: $red;
+}
+
+.button__container-step-two {
+  display: flex;
+}
+
+.clue__group {
+  display: flex;
+  gap: 10px;
+  margin-top: 50px;
 }

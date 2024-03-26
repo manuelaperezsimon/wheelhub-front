@@ -24,15 +24,15 @@
 
 .password {
   &-weak {
-    border-bottom: 6px solid red;
+    border-bottom: 6px solid $red;
   }
 
   &-medium {
-    border-bottom: 6px solid rgb(252 211 77);
+    border-bottom: 6px solid $yellow;
   }
 
   &-strong {
-    border-bottom: 6px solid green;
+    border-bottom: 6px solid $dark-green-color;
   }
 
   &-input-container {
@@ -59,7 +59,7 @@
 }
 
 .input-error {
-  border: solid 1px red;
+  border: solid 1px $red;
 }
 
 .error {

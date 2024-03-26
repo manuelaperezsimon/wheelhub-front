@@ -1,5 +1,6 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { SlArrowRight } from "react-icons/sl";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { createFormContext } from "../../context/formContext";
 import Button from "../Button/Button";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -16,7 +17,14 @@ type FormValues = {
 
 const StepTwo = (): JSX.Element => {
   const { stepForward, stepBackward } = useContext(createFormContext);
-  const { updatePasswordStrength, passwordStrength } = usePassWordValidation();
+  const {
+    updatePasswordStrength,
+    passwordStrength,
+    repeatPasswordVisible,
+    passwordVisible,
+    togglePasswordVisibility,
+  } = usePassWordValidation();
+
   const {
     register,
     handleSubmit,
@@ -24,6 +32,7 @@ const StepTwo = (): JSX.Element => {
     formState: { errors, isValid },
     getValues,
   } = useForm<FormValues>();
+
   const { createUser } = useUser();
 
   const values = getValues();
@@ -76,25 +85,38 @@ const StepTwo = (): JSX.Element => {
             <label htmlFor="password" className="form__label">
               Crea tu Contraseña
             </label>
-            <input
-              type="password"
-              id="password"
-              className={`form__input input-password ${passwordStrength}`}
-              placeholder="Crea tu Contraseña"
-              autoComplete="off"
-              {...register("password", {
-                required: {
-                  value: true,
-                  message: "El campo es requerido",
-                },
-                pattern: {
-                  value: /^(?=.*\d)(?=.*[A-Z]).{8,24}$/,
-                  message:
-                    "La contraseña debe tener entre 8 y 24 caracteres y contener al menos un número y una letra mayúscula.",
-                },
-              })}
-              onChange={(e) => updatePasswordStrength(e.target.value)}
-            />
+            <div className="password-input-container">
+              <input
+                type={passwordVisible ? "text" : "password"}
+                id="password"
+                className={`form__input input-password ${passwordStrength}`}
+                placeholder="Crea tu Contraseña"
+                autoComplete="off"
+                {...register("password", {
+                  required: {
+                    value: true,
+                    message: "El campo es requerido",
+                  },
+                  pattern: {
+                    value: /^(?=.*\d)(?=.*[A-Z]).{8,24}$/,
+                    message:
+                      "La contraseña debe tener entre 8 y 24 caracteres y contener al menos un número y una letra mayúscula.",
+                  },
+                })}
+                onChange={(e) => updatePasswordStrength(e.target.value)}
+              />
+              {passwordVisible ? (
+                <AiOutlineEyeInvisible
+                  className="eye-icon"
+                  onClick={() => togglePasswordVisibility("password")}
+                />
+              ) : (
+                <AiOutlineEye
+                  className="eye-icon"
+                  onClick={() => togglePasswordVisibility("password")}
+                />
+              )}
+            </div>
             {errors.password && (
               <span className="error">{errors.password.message}</span>
             )}
@@ -103,25 +125,38 @@ const StepTwo = (): JSX.Element => {
             <label htmlFor="repeatPassword" className="form__label">
               Repite tu Contraseña
             </label>
-            <input
-              type="password"
-              id="repeatPassword"
-              className="form__input input-repeat-password"
-              placeholder="Repite tu Contraseña"
-              autoComplete="off"
-              {...register("repeatPassword", {
-                required: {
-                  value: true,
-                  message: "El campo es requerido",
-                },
-                validate: (value) => {
-                  return (
-                    value === watch("password") ||
-                    "Las contraseñas no coinciden"
-                  );
-                },
-              })}
-            />
+            <div className="password-input-container">
+              <input
+                type={repeatPasswordVisible ? "text" : "password"}
+                id="repeatPassword"
+                className="form__input input-repeat-password"
+                placeholder="Repite tu Contraseña"
+                autoComplete="off"
+                {...register("repeatPassword", {
+                  required: {
+                    value: true,
+                    message: "El campo es requerido",
+                  },
+                  validate: (value) => {
+                    return (
+                      value === watch("password") ||
+                      "Las contraseñas no coinciden"
+                    );
+                  },
+                })}
+              />
+              {repeatPasswordVisible ? (
+                <AiOutlineEyeInvisible
+                  className="eye-icon"
+                  onClick={() => togglePasswordVisibility("repeatPassword")}
+                />
+              ) : (
+                <AiOutlineEye
+                  className="eye-icon"
+                  onClick={() => togglePasswordVisibility("repeatPassword")}
+                />
+              )}
+            </div>
             {errors.repeatPassword && (
               <span className="error">{errors.repeatPassword.message}</span>
             )}

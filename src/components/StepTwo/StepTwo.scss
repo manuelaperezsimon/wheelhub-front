@@ -34,6 +34,28 @@
   &-strong {
     border-bottom: 6px solid green;
   }
+
+  &-input-container {
+    position: relative;
+  }
+}
+
+.input-password {
+  width: calc(100% - 2.5rem);
+  padding-right: 2.5rem;
+}
+
+.input-repeat-password {
+  width: calc(100% - 2.5rem);
+  padding-right: 2.5rem;
+}
+
+.eye-icon {
+  position: absolute;
+  top: 50%;
+  right: 3.5rem;
+  transform: translateY(-50%);
+  cursor: pointer;
 }
 
 .error {

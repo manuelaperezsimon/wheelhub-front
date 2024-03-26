@@ -11,6 +11,8 @@ const usePassWordValidation = () => {
   const [passwordStrength, setPasswordStrength] = useState(
     passwordStrengths.EMPTY
   );
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [repeatPasswordVisible, setRepeatPasswordVisible] = useState(false);
 
   const updatePasswordStrength = (password: string) => {
     const hasUppercase = /[A-Z]/.test(password);
@@ -34,9 +36,20 @@ const usePassWordValidation = () => {
     }
   };
 
+  const togglePasswordVisibility = (field: string) => {
+    if (field === "password") {
+      setPasswordVisible((prev) => !prev);
+    } else if (field === "repeatPassword") {
+      setRepeatPasswordVisible((prev) => !prev);
+    }
+  };
+
   return {
     updatePasswordStrength,
     passwordStrength,
+    passwordVisible,
+    repeatPasswordVisible,
+    togglePasswordVisibility,
   };
 };
 

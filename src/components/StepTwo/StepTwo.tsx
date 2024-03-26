@@ -82,7 +82,7 @@ const StepTwo = (): JSX.Element => {
             <span className="error">{errors.username.message}</span>
           )}
         </div>
-        <div>
+        <div className="form-register-password__group">
           <div className="form-register__group">
             <label htmlFor="password" className="form__label">
               Crea tu Contraseña
@@ -168,7 +168,7 @@ const StepTwo = (): JSX.Element => {
             )}
           </div>
         </div>
-        <div className="form-register__group">
+        <div className="form-register__group clue__group">
           <p>
             También puedes crear una pista que te ayude a recordar tu
             contraseña.
@@ -198,6 +198,7 @@ const StepTwo = (): JSX.Element => {
           />
         </div>
         {errors.clue && <span className="error">{errors.clue.message}</span>}
+        <div className="bottom-line"></div>
         <div className="form__button__group">
           <Button
             buttonText="Atrás"
@@ -205,13 +206,15 @@ const StepTwo = (): JSX.Element => {
             classNameTypeButton="backward-step__button"
             actionOnclick={stepBackward}
           />
-          <Button
-            buttonText="Siguiente"
-            type="submit"
-            classNameTypeButton="next-step__button"
-            actionOnclick={isValid ? () => onSubmit(values) : () => {}}
-            icon={<SlArrowRight />}
-          />
+          <div className="button__container-step-two">
+            <Button
+              buttonText="Siguiente"
+              type="submit"
+              classNameTypeButton="next-step__button"
+              actionOnclick={isValid ? () => onSubmit(values) : () => {}}
+              icon={<SlArrowRight />}
+            />
+          </div>
         </div>
       </form>{" "}
     </>

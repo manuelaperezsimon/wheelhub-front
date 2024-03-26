@@ -14,28 +14,26 @@ const StepOne = ({ image, alt }: StepOneProps): JSX.Element => {
   const { stepForward } = useContext(createFormContext);
   return (
     <>
-      <h2 className="title">
-        <span className="title-word">Test</span> Frontend Wheel Hub
-      </h2>
       <div className="step-one__container">
         <img src={image} alt={alt} />
         <div className="content">
           <span className="step__title">¡Bienvenido/a a WheelHub!</span>
-          <p>
+          <p className="step__content">
             Quieres formar parte de la comunidad? Pues adelante :) , simplemente
             deberás seguir estos pasos:
           </p>
           <ol>
-            <li>
+            <li className="step__list__content">
               Deberás confirmar que eres mayor de edad y que estás de acuerdo
-              con el tratamiento de tus datos según la política de datos
-              vigente.
+              con el tratamiento de <br></br>tus datos según la política de
+              datos vigente.
             </li>
-            <li>
+            <li className="step__list__content">
               Luego, tendrás que crear tu usuario, contraseña y una pista para
-              recordarla en caso de que sea necesitario (esto es opcional).
+              recordarla en caso de <br></br>que sea necesitario (esto es
+              opcional).
             </li>
-            <li>
+            <li className="step__list__content">
               Cuando esté todo ok, ya podrás darte cuenta con nuestro mensaje de
               confirmación.{" "}
             </li>
@@ -55,18 +53,20 @@ const StepOne = ({ image, alt }: StepOneProps): JSX.Element => {
               datos según la política de protección de datos vigente
             </p>
           </div>
+          <div className="bottom-line"></div>
         </div>
-
-        <Button
-          type="button"
-          buttonText="Siguiente"
-          classNameTypeButton={
-            !isChecked ? "step__button" : "next-step__button"
-          }
-          actionOnclick={() => stepForward()}
-          isDisable={!isChecked}
-          icon={<SlArrowRight />}
-        />
+        <div className="button__container">
+          <Button
+            type="button"
+            buttonText="Siguiente"
+            classNameTypeButton={
+              !isChecked ? "step__button" : "next-step__button"
+            }
+            actionOnclick={() => stepForward()}
+            isDisable={!isChecked}
+            icon={<SlArrowRight />}
+          />
+        </div>
       </div>
     </>
   );

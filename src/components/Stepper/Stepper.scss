@@ -4,12 +4,12 @@
   display: flex;
   flex-direction: column;
   position: relative;
+  padding: 0 5%;
 }
 
 .title {
-  font-size: 30px;
+  font-size: 2rem;
   font-weight: 600;
-  padding: 40px;
   text-align: center;
 }
 
@@ -22,4 +22,17 @@
   top: 0;
   left: 30%;
   transform: translateX(-50%);
+  margin-top: 4rem;
+}
+
+@media only screen and (max-width: $tablet-breakpoint) {
+  .title {
+    font-size: 1.5rem;
+  }
+}
+
+@media only screen and (max-width: $mobile-breakpoint) {
+  .title {
+    font-size: 1.2rem;
+  }
 }

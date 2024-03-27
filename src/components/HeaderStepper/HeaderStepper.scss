@@ -33,11 +33,31 @@
 .indicator {
   position: absolute;
   bottom: -37px;
-  left: 34%;
-  transform: rotate(180deg);
+  left: 50%; /* Cambiado para centrar */
+  transform: translateX(-50%) rotate(180deg); /* Añadido translateX(-50%) para centrar */
   width: 0;
   height: 0;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
   border-top: 10px solid $white;
+}
+
+@media screen and (max-width: 300px) {
+  .header__container {
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  .step {
+    font-size: 18px;
+    padding: 8px 20px;
+  }
+
+  .line {
+    width: 20px;
+  }
+
+  .indicator {
+    left: calc(50% - 5px);
+  }
 }

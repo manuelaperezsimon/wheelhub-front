@@ -8,7 +8,6 @@ import "./StepThree.scss";
 
 const StepThree = (): JSX.Element => {
   const { stepBackward, setCurrentStep, error } = useContext(createFormContext);
-
   return (
     <>
       <div className="step-three-container">
@@ -43,7 +42,7 @@ const StepThree = (): JSX.Element => {
           <Button
             buttonText="Atrás"
             type="button"
-            classNameTypeButton="forward-step__button"
+            classNameTypeButton="backward-step-final__button"
             actionOnclick={() => stepBackward()}
           />
           <Button

@@ -5,7 +5,6 @@ import {
   Dispatch,
   SetStateAction,
 } from "react";
-import useUser from "../hooks/useUser";
 
 export const createFormContext = createContext<any>(null);
 
@@ -24,8 +23,8 @@ export function CreateFormContextProvider({
 }: {
   children: ReactNode;
 }) {
-  const [currentStep, setCurrentStep] = useState<number>(1);
-  const { error, setError } = useUser();
+  const [currentStep, setCurrentStep] = useState<number>(3);
+  const [error, setError] = useState<boolean>(false);
 
   const NUMBER_OF_STEPS = 3;
 

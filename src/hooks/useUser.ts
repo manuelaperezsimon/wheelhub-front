@@ -1,11 +1,12 @@
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { createFormContext } from "../context/formContext";
 import { User } from "../interfaces/interfaces";
 
 export const apiURL = process.env.REACT_APP_API_URL;
 
 const useUser = () => {
-  const [error, setError] = useState(false);
+  const { setError } = useContext(createFormContext);
   const createUser = async (userData: User) => {
     try {
       await axios.post(`${apiURL}users/create`, {
@@ -15,11 +16,11 @@ const useUser = () => {
       });
 
       return true;
-    } catch (error) {
+    } catch (err) {
       setError(true);
     }
   };
 
-  return { createUser, error, setError };
+  return { createUser };
 };
 export default useUser;

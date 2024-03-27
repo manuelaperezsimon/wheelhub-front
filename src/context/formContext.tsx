@@ -1,21 +1,15 @@
-import {
-  createContext,
-  useState,
-  ReactNode,
-  Dispatch,
-  SetStateAction,
-} from "react";
+import { createContext, useState, ReactNode, useEffect } from "react";
 
 export const createFormContext = createContext<any>(null);
 
 type CreateFormContextType = {
   NUMBER_OF_STEPS: number;
   currentStep: number;
-  setCurrentStep: Dispatch<SetStateAction<number>>;
+  setCurrentStep: (step: number) => void;
   stepForward: () => void;
   stepBackward: () => void;
   error: boolean;
-  setError: Dispatch<SetStateAction<boolean>>;
+  setError: (error: boolean) => void;
 };
 
 export function CreateFormContextProvider({
@@ -23,19 +17,42 @@ export function CreateFormContextProvider({
 }: {
   children: ReactNode;
 }) {
-  const [currentStep, setCurrentStep] = useState<number>(3);
-  const [error, setError] = useState<boolean>(false);
+  const [currentStep, setCurrentStepState] = useState<number>(1);
+  const [error, setErrorState] = useState<boolean>(false);
+
+  const setCurrentStep = (step: number) => {
+    setCurrentStepState(step);
+    localStorage.setItem("currentStep", step.toString());
+  };
+
+  const setError = (error: boolean) => {
+    setErrorState(error);
+    localStorage.setItem("error", error.toString());
+  };
+
+  useEffect(() => {
+    const storedStep = localStorage.getItem("currentStep");
+    const storedError = localStorage.getItem("error");
+
+    if (storedStep) {
+      setCurrentStepState(parseInt(storedStep));
+    }
+
+    if (storedError) {
+      setErrorState(storedError === "true");
+    }
+  }, []);
 
   const NUMBER_OF_STEPS = 3;
 
   const stepForward = (): void => {
     if (currentStep === NUMBER_OF_STEPS) return;
-    setCurrentStep((prev) => prev + 1);
+    setCurrentStep(currentStep + 1);
   };
 
   const stepBackward = (): void => {
     if (currentStep === 1) return;
-    setCurrentStep((prev) => prev - 1);
+    setCurrentStep(currentStep - 1);
   };
 
   const value: CreateFormContextType = {

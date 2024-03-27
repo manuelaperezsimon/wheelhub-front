@@ -109,12 +109,13 @@
 @media only screen and (max-width: $mobile-breakpoint) {
   .form {
     &-register {
-      padding: 40px 70px;
+      padding: 40px 20px;
     }
 
     &-register-password__group {
       display: flex;
       flex-direction: column;
+      gap: 10px;
     }
   }
 }

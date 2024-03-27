@@ -63,3 +63,14 @@ p {
   align-items: center;
   gap: 4px;
 }
+
+@media only screen and (max-width: $mobile-breakpoint) {
+  .title {
+    margin-left: 29px;
+    width: 100%;
+  }
+
+  img {
+    width: 300px;
+  }
+}

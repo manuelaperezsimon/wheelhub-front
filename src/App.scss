@@ -1,21 +1,28 @@
 @import "styles/base";
 
 .app {
-  .app-content {
-    margin: 25px;
-  }
-  p {
-    color: $text-color;
-    font-size: 15px;
-    font-weight: 500;
-  }
-  h4 {
-    color: $dark-green-color;
-    font-weight: 700;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  .app-header-logo {
-    max-height: 80px;
-    border: none;
-  }
+.app-content {
+  margin: 25px;
+  text-align: center;
+}
+
+p {
+  color: $text-color;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+h4 {
+  color: $dark-green-color;
+  font-weight: 700;
+}
+
+.app-header-logo {
+  max-height: 80px;
+  border: none;
 }
